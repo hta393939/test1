@@ -1,0 +1,28 @@
+# docker-compose.yaml
+
+version: "3.3"
+services:
+  test01dc:
+    image: "node:slim"
+    restart: "unless-stopped"
+    
+    working_dir: "/myapp"
+
+    volumes:
+      - type: bind
+        source: "."
+        target: "/myapp"
+      - type: bind
+        source: "./outer"
+        target: "/outer"
+
+    ports:
+      - "3000:3000"
+
+    command:
+      - "node"
+      - "/myapp/main.js"
+
+
+
+
