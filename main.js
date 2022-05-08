@@ -39,7 +39,7 @@ class Misc {
     }
 
     serverAction(req, res) {
-        console.log('serverAction called', req, res);
+        console.log('serverAction called', req.url);
         {
 
         }
@@ -58,7 +58,7 @@ class Misc {
         this.io = io;
 
         io.on('connection', socket => {
-            console.log('接続', socket);
+            console.log('接続', socket.id);
 
 //            const userId = computeUserId(socket);
             socket.on('disconnect', async () => {
@@ -75,6 +75,9 @@ class Misc {
         console.log('initializeSocket leave');
     }
 
+/**
+ * ルーター追加
+ */
     initializeRouter() {
         const mainRouter = express.Router();
         mainRouter.use('/', express.static(__dirname + '/public'));
